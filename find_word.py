@@ -28,9 +28,9 @@ def main(argv):
           outputfile = arg
        elif opt in ("-w", "--word"):
           word = arg
-    print ('Reading subtitle file ', inputfile)
-    print ('Output file is ', outputfile)
-    print ('Word is ', word)
+    print ('Reading subtitle .srt file', inputfile)
+    print ('Output .XML file is', outputfile)
+    print ('Search word(s) is/are', word)
     
     subtitle = open(inputfile, "r")
     data = list(srt.parse(subtitle))
@@ -45,9 +45,7 @@ def main(argv):
             start = re.sub(',', '.', start)
             end = re.sub(',', '.', end)
             xml.write('''<entry producer="producer0" in="%s", out="%s" />\n''' %(start, end))
-            cut_list = cut_list.append({'start': start, 'end':end, 
-                                    'contant': data[i].content},
-                                   ignore_index=True)
+            cut_list = cut_list.append({'start': start, 'end':end, 'contant': data[i].content}, ignore_index=True)
     cut_list
     
 if __name__ == "__main__":
