@@ -16,11 +16,11 @@ def main(argv):
     try:
        opts, args = getopt.getopt(argv,"hi:o:w:",["ifile=","ofile=","word="])
     except getopt.GetoptError:
-      print ('test.py -i <inputfile> -o <outputfile> -w <word>')
+      print ('find_word.py -i <inputfile> -o <outputfile> -w <word>')
       sys.exit(2)
     for opt, arg in opts:
        if opt == '-h':
-          print ('test.py -i <inputfile> -o <outputfile> -w <word>')
+          print ('find_word.py -i <inputfile> -o <outputfile> -w <word>')
           sys.exit()
        elif opt in ("-i", "--ifile"):
           inputfile = arg
@@ -30,7 +30,7 @@ def main(argv):
           word = arg
     print ('Reading subtitle .srt file', inputfile)
     print ('Output .XML file is', outputfile)
-    print ('Search word(s) is/are', word)
+    print ('Search word(s) is (are)', word)
     
     subtitle = open(inputfile, "r")
     data = list(srt.parse(subtitle))
