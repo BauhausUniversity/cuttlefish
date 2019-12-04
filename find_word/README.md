@@ -13,6 +13,6 @@ pandas, srt, datetime, sys, getopt, re
 
 ## usage
 
-''find_word.py -i <inputfile> -o <outputfile> -w <word>''
+  find_word.py -i <inputfile> -o <outputfile> -w <word>
   
 If the search "word" is composed of multiple words use hyphens
