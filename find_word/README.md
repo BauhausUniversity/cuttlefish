@@ -9,7 +9,7 @@ write a XML snippet to be pasted into a shotcut .mlt
 `python3`
 
 python packages:
-`pandas`, `srt`, `datetime`, `sys`, `getopt`, `re`
+`pandas`, `srt`, `datetime`, `sys`, `argparse`, `re`
 
 ## usage
 
