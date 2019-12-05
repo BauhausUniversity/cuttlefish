@@ -9,7 +9,6 @@ import sys
 import argparse
 import re
 
-
 def main():
     parser = argparse.ArgumentParser()
 
