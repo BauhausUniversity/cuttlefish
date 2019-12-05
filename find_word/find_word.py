@@ -15,12 +15,14 @@ def main():
     parser.add_argument("-i", "--inputfile", help="Input file")
     parser.add_argument("-o", "--outputfile", help="Output file")
     parser.add_argument("-w", "--word", help="Word")
+    parser.add_argument("-v", "--verbose", action='store_true', help="Verbose mode")
 
     args = parser.parse_args()
 
-    print ('Reading subtitle .srt file', args.inputfile)
-    print ('Output .XML file is', args.outputfile)
-    print ('Search word(s) is/are', args.word)
+    if args.verbose is True:
+        print ('Reading subtitle .srt file', args.inputfile)
+        print ('Output .XML file is', args.outputfile)
+        print ('Search word(s) is/are', args.word)
     
     subtitle = open(args.inputfile, "r")
     data = list(srt.parse(subtitle))
@@ -31,7 +33,8 @@ def main():
         if args.word in data[i].content:
             start = srt.timedelta_to_srt_timestamp(data[i].start)
             end = srt.timedelta_to_srt_timestamp(data[i].end)
-            print(start, end)
+            if args.verbose is True:
+                print(start, end)
             start = re.sub(',', '.', start)
             end = re.sub(',', '.', end)
             xml.write('''<entry producer="producer0" in="%s", out="%s" />\n''' %(start, end))
