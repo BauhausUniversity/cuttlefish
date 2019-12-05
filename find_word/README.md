@@ -16,4 +16,5 @@ python packages:
 `find_word.py -i <inputfile> -o <outputfile> -w <word>`
   
 If the search "word" is composed of multiple words use hyphens
+
 use the flag `-v` or `--verbose` for verbose output.
