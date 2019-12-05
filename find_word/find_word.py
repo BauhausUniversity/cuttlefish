@@ -6,39 +6,29 @@ import pandas as pd
 import srt
 import datetime
 import sys
-import getopt
+import argparse
 import re
 
-def main(argv):
-    inputfile = ''
-    outputfile = ''
-    word = ''
-    try:
-       opts, args = getopt.getopt(argv,"hi:o:w:",["ifile=","ofile=","word="])
-    except getopt.GetoptError:
-      print ('find_word.py -i <inputfile> -o <outputfile> -w <word>')
-      sys.exit(2)
-    for opt, arg in opts:
-       if opt == '-h':
-          print ('find_word.py -i <inputfile> -o <outputfile> -w <word>')
-          sys.exit()
-       elif opt in ("-i", "--ifile"):
-          inputfile = arg
-       elif opt in ("-o", "--ofile"):
-          outputfile = arg
-       elif opt in ("-w", "--word"):
-          word = arg
-    print ('Reading subtitle .srt file', inputfile)
-    print ('Output .XML file is', outputfile)
-    print ('Search word(s) is (are)', word)
+def main():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-i", "--inputfile", help="Input file")
+    parser.add_argument("-o", "--outputfile", help="Output file")
+    parser.add_argument("-w", "--word", help="Word")
+
+    args = parser.parse_args()
+
+    print ('Reading subtitle .srt file', args.inputfile)
+    print ('Output .XML file is', args.outputfile)
+    print ('Search word(s) is/are', args.word)
     
-    subtitle = open(inputfile, "r")
+    subtitle = open(args.inputfile, "r")
     data = list(srt.parse(subtitle))
  
     cut_list = pd.DataFrame(columns=['start', 'end', 'contant'])
-    xml = open(outputfile, "w") 
+    xml = open(args.outputfile, "w") 
     for i in range(len(data)):
-        if word in data[i].content:
+        if args.word in data[i].content:
             start = srt.timedelta_to_srt_timestamp(data[i].start)
             end = srt.timedelta_to_srt_timestamp(data[i].end)
             print(start, end)
@@ -47,6 +37,6 @@ def main(argv):
             xml.write('''<entry producer="producer0" in="%s", out="%s" />\n''' %(start, end))
             cut_list = cut_list.append({'start': start, 'end':end, 'contant': data[i].content}, ignore_index=True)
     cut_list
-    
+ 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main()
