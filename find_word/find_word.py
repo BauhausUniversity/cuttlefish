@@ -23,7 +23,7 @@ def main():
     parser.add_argument("-c",
                         "--cut",
                         action="store",
-                        nargs="*",
+                        nargs=2,
                         help="Automatically cutting the video file.")
     parser.add_argument("-v", "--verbose", action='store_true', help="verbose mode")
 

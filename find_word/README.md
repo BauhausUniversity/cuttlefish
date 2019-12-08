@@ -9,12 +9,12 @@ write a XML snippet to be pasted into a shotcut .mlt
 `python3`
 
 python packages:
-`pandas`, `srt`, `datetime`, `sys`, `argparse`, `re`
+`argparse`, `re`, `srt`, `ffmpeg`, `pandas`
 
 ## usage
 
-`find_word.py -i <inputfile> -o <outputfile> -w <word>`
-  
-If the search "word" is composed of multiple words use hyphens
+`find_word [-h] [-i INPUTFILE] [-o OUTPUTFILE] [-w WORD] [-c CUT CUT] [-v]`
+
+If the search “word” is composed of multiple words use hyphens
 
 use the flag `-v` or `--verbose` for verbose output.
