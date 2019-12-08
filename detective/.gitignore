@@ -1,0 +1,8 @@
+*.mp4
+*.csv
+
+detective/
+material/
+_material/
+
+.DS_Store
