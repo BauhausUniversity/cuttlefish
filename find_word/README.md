@@ -15,7 +15,7 @@ python packages:
 
 In order to install the dependencies automatically, execute:
 
-`pip install -r requirements.txt`
+`pip3 install -r requirements.txt`
 
 ## usage
 
