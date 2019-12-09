@@ -1,4 +1,4 @@
-# cuttlefish
+# cuttlefish :squid:
 The cuttlefish is the cousin of the babelfish but it translates video, subtitles and more. 
 A collection of tools and scrips for offline algorithmig editing & procedural cuts of audiovisual material.
 
