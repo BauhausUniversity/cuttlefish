@@ -24,3 +24,5 @@ In order to install the dependencies automatically, execute:
 If the search “word” is composed of multiple words use hyphens
 
 use the flag `-v` or `--verbose` for verbose output.
+
+The output xml file contains a snippet of xml code which can be pasted into a shotcut .mlt file. For this make a new Shotcut document and put the source video in the playlist. Then save and close the document and use a text editor to replace the playlist part with the snippet from this python script.
