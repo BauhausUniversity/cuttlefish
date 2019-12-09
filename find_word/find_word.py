@@ -54,7 +54,7 @@ def main():
                 print(start, end)
             start = re.sub(',', '.', start)
             end = re.sub(',', '.', end)
-            xml.write('''<entry producer="producer0" in="%s", out="%s" />\n''' %(start, end))
+            xml.write('''<entry producer="producer0" in="%s" out="%s" />\n''' %(start, end))
             cut_list = cut_list.append({'start': start,
                                         'end':end,
                                         'content': data[i].content
