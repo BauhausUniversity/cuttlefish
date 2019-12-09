@@ -16,11 +16,11 @@ CEND = '\033[0m'
 def main():
     """Parsing arguments and generating an XML file."""
     parser = argparse.ArgumentParser(prog="find_word",
-                                     description="Searching for strings in a subtitle file.")
+                                     description="Searching for strings in a subtitle file and generating an edit decision list")
 
-    parser.add_argument("-i", "--inputfile", help="input .srt file")
+    parser.add_argument("-i", "--inputfile", help="input .srt file", required=True)
     parser.add_argument("-o", "--outputfile", help="output .xml file")
-    parser.add_argument("-w", "--word", help="word")
+    parser.add_argument("-w", "--word", help="word", required=True)
     parser.add_argument("-c",
                         "--cut",
                         action="store",
