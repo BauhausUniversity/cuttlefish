@@ -11,9 +11,15 @@ write a XML snippet to be pasted into a shotcut .mlt
 python packages:
 `argparse`, `re`, `srt`, `ffmpeg`, `pandas`
 
+## setup
+
+In order to install the dependencies automatically, execute:
+
+`pip install -r requirements.txt`
+
 ## usage
 
-`find_word [-h] [-i INPUTFILE] [-o OUTPUTFILE] [-w WORD] [-c CUT CUT] [-v]`
+`python3 find_word.py [-h] [-i INPUTFILE] [-o OUTPUTFILE] [-w WORD] [-c CUT CUT] [-v]`
 
 If the search “word” is composed of multiple words use hyphens
 
