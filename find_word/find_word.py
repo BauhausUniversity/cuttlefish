@@ -7,33 +7,34 @@ write a XML snippet to be pasted into a shotcut .mlt
 import argparse
 import re
 import srt
-
 import ffmpeg
+import pandas
 
-import pandas as pd
+CRED = '\033[91m'
+CEND = '\033[0m'
 
 def main():
     """Parsing arguments and generating an XML file."""
     parser = argparse.ArgumentParser(prog="find_word",
                                      description="Searching for strings in a subtitle file.")
 
-    parser.add_argument("-i", "--inputfile", help="input file")
-    parser.add_argument("-o", "--outputfile", help="output file")
+    parser.add_argument("-i", "--inputfile", help="input .srt file")
+    parser.add_argument("-o", "--outputfile", help="output .xml file")
     parser.add_argument("-w", "--word", help="word")
     parser.add_argument("-c",
                         "--cut",
                         action="store",
                         nargs=2,
-                        help="Automatically cutting the video file.")
+                        help="Automatically cutting the video file. (input video file, output video file)")
     parser.add_argument("-v", "--verbose", action='store_true', help="verbose mode")
 
     args = parser.parse_args()
 
     # Verbose mode
     if args.verbose:
-        print('Reading subtitle .srt file', args.inputfile)
-        print('Output .XML file is', args.outputfile)
-        print('Search word(s) is/are', args.word)
+        print('Reading subtitle .srt file', CRED + args.inputfile + CEND)
+        print('Output .XML file is', CRED + args.outputfile + CEND)
+        print('Search word(s) is/are', CRED + args.word + CEND)
         if args.cut is not None:
             print(args.cut[0])
             print(args.cut[1])
@@ -41,7 +42,7 @@ def main():
     subtitle = open(args.inputfile, "r")
     data = list(srt.parse(subtitle))
 
-    cut_list = pd.DataFrame(columns=['start', 'end', 'content'])
+    cut_list = pandas.DataFrame(columns=['start', 'end', 'content'])
     xml = open(args.outputfile, "w")
 
     for i in range(len(data)):
