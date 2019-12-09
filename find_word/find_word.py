@@ -33,7 +33,8 @@ def main():
     # Verbose mode
     if args.verbose:
         print('Reading subtitle .srt file', CRED + args.inputfile + CEND)
-        print('Output .XML file is', CRED + args.outputfile + CEND)
+        if args.outputfile is not None:
+            print('Output .XML file is', CRED + args.outputfile + CEND)
         print('Search word(s) is/are', CRED + args.word + CEND)
         if args.cut is not None:
             print(args.cut[0])
@@ -43,7 +44,8 @@ def main():
     data = list(srt.parse(subtitle))
 
     cut_list = pandas.DataFrame(columns=['start', 'end', 'content'])
-    xml = open(args.outputfile, "w")
+    if args.outputfile is not None:
+        xml = open(args.outputfile, "w")
 
     for i in range(len(data)):
         if args.word in data[i].content:
@@ -53,14 +55,15 @@ def main():
             # Verbose mode
             if args.verbose:
                 print(start, end)
-            start = re.sub(',', '.', start)
-            end = re.sub(',', '.', end)
-            xml.write('''<entry producer="producer0" in="%s" out="%s" />\n''' %(start, end))
-            cut_list = cut_list.append({'start': start,
+            if args.outputfile is not None:
+                start = re.sub(',', '.', start)
+                end = re.sub(',', '.', end)
+                xml.write('''<entry producer="producer0" in="%s" out="%s" />\n''' %(start, end))
+                cut_list = cut_list.append({'start': start,
                                         'end':end,
                                         'content': data[i].content
                                         },
-                                       ignore_index=True)
+                                        ignore_index=True)
 
     if args.cut is not None:
         cut(args.cut[0], args.cut[1], cut_list, args.verbose)
