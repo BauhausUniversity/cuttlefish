@@ -20,7 +20,8 @@ def main():
 
     parser.add_argument("-i", "--inputfile", help="input .srt file", required=True)
     parser.add_argument("-o", "--outputfile", help="output .xml file")
-    parser.add_argument("-w", "--word", help="word", required=True)
+    parser.add_argument("-w", "--word", help="search for word(s)", required=True)
+#    parser.add_argument("-e", "--extend", help="extend clip by (use negative number to shorten)")
     parser.add_argument("-c",
                         "--cut",
                         action="store",
