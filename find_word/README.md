@@ -19,9 +19,11 @@ In order to install the dependencies automatically, execute:
 
 ## usage
 
-`python3 find_word.py [-h] [-i INPUTFILE] [-o OUTPUTFILE] [-w WORD] [-c CUT CUT] [-v]`
+`python3 find_word.py [-h] [-i INPUTFILE] [-o OUTPUTFILE] [-w WORD] [-c] [-v]`
 
 If the search “word” is composed of multiple words use hyphens
+
+If flag `-c` is used, the list of scenes will be exported to a pickle file.
 
 use the flag `-v` or `--verbose` for verbose output.
 
