@@ -1,6 +1,9 @@
 import argparse
 import ffmpeg
 import pandas
+import re
+from timecode import Timecode
+from scenedetect.video_manager import VideoManager
 
 def main():
     """Automatically cutting a video using ffmpeg."""
@@ -11,6 +14,11 @@ def main():
 
     parser.add_argument("list", help="path to cut list")
     parser.add_argument("input", help="input video file")
+    parser.add_argument("-t",
+                        "--tolerance",
+                        action="store",
+                        default=0,
+                        help="number of frames added")
     #parser.add_argument("basename", help="basename for the scenes")
     parser.add_argument("-v",
                         "--verbose",
@@ -21,18 +29,32 @@ def main():
 
     stream = 0
     output = 'scene'
-    video_list = []
-    audio_list = []
-    merge_list = []
+
+    video_manager = VideoManager([args.input])
+    fps = video_manager.get_framerate()
+    # tolerance = Timecode(fps, frames=int(args.tolerance)).frames_to_tc
+    tolerance = int(args.tolerance)
+
+    if args.verbose:
+        print("FPS: %d" % (fps))
+        print(tolerance)
 
     raw = ffmpeg.input(args.input)
     cut_list = pandas.read_pickle(args.list)
 
-    print(cut_list)
-
     for i, scene in cut_list.iterrows():
-        start = cut_list.start[i]
-        end = cut_list.end[i]
+        start = re.sub(',', '.', cut_list.start[i])
+        end = re.sub(',', '.', cut_list.end[i])
+
+        print("%s %s" % (start, end))
+
+        start = Timecode(fps, start) - tolerance
+        start.set_fractional(True)
+
+        end = Timecode(fps, end) + tolerance
+        end.set_fractional(True)
+
+        print("%s %s" % (start, end))
 
         if args.verbose:
             print('   Start %s, End %s' % (start, end))
