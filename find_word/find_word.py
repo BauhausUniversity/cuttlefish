@@ -21,7 +21,6 @@ def main():
     parser.add_argument("-i", "--inputfile", help="input .srt file", required=True)
     parser.add_argument("-o", "--outputfile", help="output .xml file")
     parser.add_argument("-w", "--word", help="search for word(s)", required=True)
-#    parser.add_argument("-e", "--extend", help="extend clip by (use negative number to shorten)")
     parser.add_argument("-c",
                         "--cut",
                         action="store_true",
@@ -37,7 +36,7 @@ def main():
             print('Output .XML file is', CRED + args.outputfile + CEND)
         print('Search word(s) is/are', CRED + args.word + CEND)
         if args.cut is not None:
-            print(args.cut[0])
+            print(args.cut)
 
     subtitle = open(args.inputfile, "r")
     data = list(srt.parse(subtitle))

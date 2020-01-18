@@ -1,4 +1,4 @@
 .DS_Store
 
-.mp4
-.pkl
+*.mp4
+*.pkl
