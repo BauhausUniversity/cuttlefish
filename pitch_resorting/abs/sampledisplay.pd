@@ -1,0 +1,51 @@
+#N canvas 838 76 931 570 12;
+#X obj 103 118 bng 30 250 50 0 opensoundfile empty open_soundfile 32
+7 0 10 -116352 -1305 -1;
+#X obj 373 245 soundfiler, f 16;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array soundfile-left 4.55168e+06 float 2;
+#X coords 0 1 4.55168e+06 -1 200 100 1 0 0;
+#X restore 105 175 graph;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array soundfile-right 4.55168e+06 float 2;
+#X coords 0 1 4.55168e+06 -1 200 100 1 0 0;
+#X restore 103 306 graph;
+#X msg 392 181 read -resize vinchi.wav soundfile-left soundfile-right
+;
+#X obj 373 483 s sflength;
+#X obj 482 276 unpack f f f;
+#X obj 514 341 samplerate~;
+#X msg 385 211 read -resize testsound.wav soundfile-left soundfile-right
+;
+#X obj 373 63 openpanel;
+#X msg 373 92 read -resize /home/max/Documents/Bauhaus-Universitaet/Gestaltung/2021/WS/Computer's\ Cut/Pd-experiments/vinchi.wav
+soundfile-left soundfile-right;
+#X obj 373 37 r opensoundfile;
+#X obj 482 308 t f b;
+#X obj 482 401 ==;
+#X obj 482 428 sel 0;
+#X obj 482 484 print ERROR;
+#X obj 635 421 print;
+#X msg 555 374 Pd samplerate: \$1;
+#X msg 608 339 Soundfile samplerate: \$1;
+#X msg 482 456 Soundfile samplerate needs to be equal with Pd samplerate!
+;
+#X connect 1 0 5 0;
+#X connect 1 1 6 0;
+#X connect 4 0 1 0;
+#X connect 6 0 12 0;
+#X connect 7 0 13 1;
+#X connect 7 0 17 0;
+#X connect 8 0 1 0;
+#X connect 9 0 10 0;
+#X connect 10 0 1 0;
+#X connect 11 0 9 0;
+#X connect 12 0 13 0;
+#X connect 12 0 18 0;
+#X connect 12 1 7 0;
+#X connect 13 0 14 0;
+#X connect 14 0 19 0;
+#X connect 17 0 16 0;
+#X connect 18 0 16 0;
+#X connect 19 0 15 0;
+#X coords 0 -1 1 1 210 180 1 100 100;
