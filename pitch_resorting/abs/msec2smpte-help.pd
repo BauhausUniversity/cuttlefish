@@ -1,0 +1,16 @@
+#N canvas 315 246 534 433 12;
+#X obj 55 104 timer 1 msec;
+#X msg 136 67 bang;
+#X msg 55 39 bang;
+#X msg 78 202 fps 24;
+#X msg 140 204 msec;
+#X obj 55 247 msec2smpte 25;
+#X symbolatom 55 309 20 0 0 0 - - -;
+#X text 242 65 this abstraction ist converting milliseconds to SMPTE
+time code, f 36;
+#X connect 0 0 5 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 0;
+#X connect 3 0 5 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
