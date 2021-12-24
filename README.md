@@ -8,3 +8,4 @@ A collection of tools and scrips for offline algorithmig editing & procedural cu
 
 * `detective`: Algorithmically detecting and cutting scenes in a video.
 * `find_word.py`: Getting shots by searching a subtitle file for a particular word or phrase.
+* `pitch_resorting`: Pd patch to detect notes and rearrange them according to a given MIDI file.
