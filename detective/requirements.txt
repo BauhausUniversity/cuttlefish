@@ -5,4 +5,4 @@ numpy==1.22.0
 opencv-python==4.2.0.32
 progress-bar==8
 scenedetect==0.5.1.1
-tqdm==4.38.0
+tqdm==4.66.3
